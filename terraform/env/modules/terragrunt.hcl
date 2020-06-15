@@ -5,7 +5,7 @@ remote_state {
   		encrypt        = true
   		bucket         = "tg-dev-setup"
   		key            = "${path_relative_to_include()}/terraform.tfstate"
-  		region         = "us-east"
+  		region         = "us-east-1"
   		dynamodb_table = "tg-dev-setup"
 	}
 }

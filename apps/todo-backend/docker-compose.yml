@@ -20,6 +20,6 @@ services:
     environment:
       - ENVIRONMENT=LOCAL
     depends_on:
-      - postgres          # Uncomment this when using postgres.
+      - postgres
     networks:
       - default

@@ -1,5 +1,12 @@
+terraform {
+  backend "s3" {}
+}
+
+provider "aws" {
+  region = var.aws_region
+}
+
 module "todo-backend" {
-  source              = "../../shared/ecr"
-  env_name            = "${var.env}"
-  service_name           = "todo-backend"
+  source = "../shared/ecr"
+  service_name = "todo-backend"
 }

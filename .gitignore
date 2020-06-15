@@ -29,3 +29,4 @@ override.tf.json
 # example: *tfplan*
 **/.idea/*
 **/bin/*
+terraform/env/modules/terraform.tfvars

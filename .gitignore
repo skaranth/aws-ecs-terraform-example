@@ -30,3 +30,4 @@ override.tf.json
 **/.idea/*
 **/bin/*
 terraform/env/modules/terraform.tfvars
+**/.terragrunt-cache/*

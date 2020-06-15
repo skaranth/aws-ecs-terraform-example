@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=todo
+      - POSTGRES_PASSWORD=todo
+      - POSTGRES_DB=todo-backend
+    networks:
+      - default
+
+  todo-backend:
+    container_name: todo-backend
+    image: todo-backend:latest
+    ports:
+      - 8080:8080
+    environment:
+      - ENVIRONMENT=LOCAL
+    depends_on:
+      - postgres          # Uncomment this when using postgres.
+    networks:
+      - default

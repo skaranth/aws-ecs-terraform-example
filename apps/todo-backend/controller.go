@@ -34,11 +34,3 @@ func (ctrl *TodoController) Create(c *gin.Context) {
 	}
 }
 
-type TodoController struct {
-	repo *TodoRepository
-}
-
-func (ctrl *TodoController) Init(engine *gin.Engine)  {
-	engine.GET("/todo", ctrl.GetTodos)
-	engine.POST("/todo", ctrl.Create)
-}

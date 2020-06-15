@@ -4,10 +4,12 @@ MODULE=$2
 
 REGION=us-east
 BASEDIR=$(dirname $0)
-RUN_DIR=$BASEDIR/modules
+TF_ROOT_DIR=$BASEDIR/modules
+RUN_DIR=$TF_ROOT_DIR/$MODULE
+
 TEMPLATE_FILE=$BASEDIR/terragrunt_template
 
-TERRAGRUNT_FILE=$RUN_DIR/terragrunt.hcl
+TERRAGRUNT_FILE=$TF_ROOT_DIR/terragrunt.hcl
 VAR_FILE=$BASEDIR/vars/$ENV
 
 setup_template(){
@@ -23,13 +25,12 @@ setup_template(){
 }
 setup_vars(){
   echo "Setting up vars for env:$ENV"
-  rm -rf $RUN_DIR/terraform.tfvars
-  cp $VAR_FILE $RUN_DIR/terraform.tfvars
+  rm -rf $TF_ROOT_DIR/terraform.tfvars
+  cp $VAR_FILE $TF_ROOT_DIR/terraform.tfvars
 }
 
 
 run(){
-  source $VAR_FILE
   cd $RUN_DIR
   terragrunt apply
 }

@@ -4,5 +4,5 @@ include {
 }
 
 terraform {
-  source = "../../modules//setup"
+  source = "../../../modules//setup"
 }

@@ -4,6 +4,6 @@ variable vpc_id {}
 variable subnets {}
 variable cert_arn {}
 variable white_list {
-  default = "0.0.0.0/0"
+  default = ["0.0.0.0/0"]
 }
-variable egrees_cidr {}
+variable egress_cidr {}

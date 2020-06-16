@@ -3,10 +3,10 @@ remote_state {
 
 	config = {
   		encrypt        = true
-  		bucket         = "tg-demo-dev-setup"
+  		bucket         = "tg-demo-dev-infra"
   		key            = "${path_relative_to_include()}/terraform.tfstate"
   		region         = "us-east-1"
-  		dynamodb_table = "tg-demo-dev-setup"
+  		dynamodb_table = "tg-demo-dev-infra"
 	}
 }
 

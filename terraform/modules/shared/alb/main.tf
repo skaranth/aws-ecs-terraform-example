@@ -4,17 +4,17 @@ locals {
 }
 
 data "aws_route53_zone" "target" {
-  name         = var.domain
+  name = var.domain
 }
 
 
 resource "aws_security_group" "sg-public-alb" {
-  name = "sg-${var.name}"
+  name = "${local.name}-sg"
   description = "Public Application ALB SG"
   vpc_id = var.vpc_id
 
   ingress {
-    description = "TLS from VPC"
+    description = "Inbound HTTPS"
     from_port = 443
     to_port = 443
     protocol = "tcp"
@@ -22,6 +22,7 @@ resource "aws_security_group" "sg-public-alb" {
   }
 
   ingress {
+    description = "Inbound HTTP"
     from_port = 80
     to_port = 80
     protocol = "TCP"
@@ -30,6 +31,7 @@ resource "aws_security_group" "sg-public-alb" {
   }
 
   egress {
+    description = "Downstream VPC Access"
     from_port = 8080
     to_port = 8080
     protocol = "TCP"
@@ -39,7 +41,7 @@ resource "aws_security_group" "sg-public-alb" {
   }
 
   tags = {
-    Name = "sg-${var.name}"
+    Name = "${local.name}-sg"
     Terraform = "true"
     Environment = var.env
   }
@@ -82,7 +84,7 @@ module "alb" {
 
   target_groups = [
     {
-      name_prefix = "${local.name}-dummytg-"
+      name_prefix = "dummy-"
       backend_protocol = "HTTPS"
       backend_port = 80
     }
@@ -96,14 +98,9 @@ module "alb" {
 
 resource "aws_route53_record" "record" {
   name = var.env
-  zone_id = data.aws_route53_zone.zone_id
+  zone_id = data.aws_route53_zone.target.zone_id
   type = "CNAME"
   ttl = "300"
   records = [
     "${module.alb.this_lb_dns_name}"]
-  tags = {
-    Terraform = "true"
-    Environment = var.env
-  }
-
 }

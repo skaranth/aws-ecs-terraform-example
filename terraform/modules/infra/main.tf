@@ -20,12 +20,12 @@ data "terraform_remote_state" "setup" {
 
 module "alb" {
   source = "../shared/alb"
-  cert_arn = data.terraform_remote_state.setup.cert_arn
+  cert_arn = data.terraform_remote_state.setup.outputs.cert_arn
   domain = var.domain
   env = var.env
-  egrees_cidr = data.terraform_remote_state.setup.vpc_cidr_block
-  subnets = data.terraform_remote_state.setup.public_subnets
-  vpc_id = data.terraform_remote_state.setup.vpc_id
+  egress_cidr = data.terraform_remote_state.setup.outputs.vpc_cidr_block
+  subnets = data.terraform_remote_state.setup.outputs.public_subnets
+  vpc_id = data.terraform_remote_state.setup.outputs.vpc_id
 
 }
 

@@ -16,7 +16,7 @@ module "vpc" {
 module "cert" {
   source = "../shared/cert"
   env = var.env
-  domain = "${var.env}.${var.domain}"
+  domain = var.domain
 }
 
 module "todo-backend" {

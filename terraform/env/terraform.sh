@@ -1,8 +1,10 @@
 #!/bin/bash
-ENV=$1
-MODULE=$2
+OPERATION=$1
+ENV=$2
+MODULE=$3
 
 REGION=us-east-1
+PRODUCT_CODE=tg-demo
 BASEDIR=$PWD/$(dirname $0)
 TG_ROOT_DIR=$BASEDIR/modules
 RUN_DIR=$TG_ROOT_DIR/$MODULE
@@ -24,8 +26,8 @@ setup_template(){
 
 
   cp $TEMPLATE_FILE $TERRAGRUNT_FILE
-  sed -i.bak "s/{{THE_BUCKET}}/$ENV-$MODULE/g" $TERRAGRUNT_FILE
-  sed -i.bak "s/{{THE_LOCK_TABLE}}/$ENV-$MODULE/g" $TERRAGRUNT_FILE
+  sed -i.bak "s/{{THE_BUCKET}}/$PRODUCT_CODE-$ENV-$MODULE/g" $TERRAGRUNT_FILE
+  sed -i.bak "s/{{THE_LOCK_TABLE}}/$PRODUCT_CODE-$ENV-$MODULE/g" $TERRAGRUNT_FILE
   sed -i.bak "s/{{THE_REGION}}/$REGION/g" $TERRAGRUNT_FILE
   sed -i.bak "s/{{TERRAGRUNT_ROOT}}/$(echo $TG_ROOT_DIR | sed 's_/_\\/_g')/g" $TERRAGRUNT_FILE
   rm -rf $TERRAGRUNT_FILE.bak
@@ -38,12 +40,12 @@ setup_vars(){
 
 
 run(){
+  clean
+  setup_template
+  setup_vars
   cd $RUN_DIR
   terragrunt apply
 }
 
-clean
-setup_template
-setup_vars
+
 run
-clean

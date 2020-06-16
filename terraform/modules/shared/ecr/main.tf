@@ -4,4 +4,8 @@ resource "aws_ecr_repository" "service_repo" {
   lifecycle {
     create_before_destroy = true
   }
+  tags = {
+    Terraform = "true"
+    Environment = var.env
+  }
 }

@@ -11,7 +11,7 @@ provider "aws" {
 data "terraform_remote_state" "setup" {
   backend = "s3"
   config = {
-    bucket = "${var.product_code}-${var.env}-infra"
+    bucket = "${var.product_code}-${var.env}-setup"
     key    = "setup/terraform.tfstate"
     region = var.aws_region
   }

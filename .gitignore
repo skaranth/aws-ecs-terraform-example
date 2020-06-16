@@ -31,3 +31,5 @@ override.tf.json
 **/bin/*
 terraform/env/modules/terraform.tfvars
 **/.terragrunt-cache/*
+terraform/env/modules/env.tfvars
+terraform/env/modules/terragrunt.hcl

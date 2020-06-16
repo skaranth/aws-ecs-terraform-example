@@ -1,5 +1,0 @@
-env = "dev"
-aws_region = "us-east-1"
-start_cidr ="10.10"
-domain = "karanthconsulting.com"
-product_code ="tg-demo"

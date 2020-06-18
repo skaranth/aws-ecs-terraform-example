@@ -41,7 +41,7 @@ resource "aws_ecs_service" "app_service" {
   cluster = aws_ecs_cluster.service_cluster.id
   task_definition = aws_ecs_task_definition.service_definition.arn
   desired_count = module.env_size.ecs_desired_count
-  iam_role = var.role_arn
+  iam_role = var.execution_role_arn
   depends_on = [
     aws_ecs_cluster.service_cluster,
     aws_ecs_task_definition.service_definition]

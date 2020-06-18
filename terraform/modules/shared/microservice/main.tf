@@ -37,7 +37,7 @@ module "ecs" {
   product_version = var.product_version
   size = var.size
   service_name = var.service_name
-  role_arn = module.microservice_iam.role_arn
+  role_arn = module.microservice_iam.task_role_arn
   target_group_arn =aws_alb_target_group.microservice_tg.arn
-  execution_role_arn = module.microservice_iam.role_arn
+  execution_role_arn = module.microservice_iam.role_execution_role_arn
 }

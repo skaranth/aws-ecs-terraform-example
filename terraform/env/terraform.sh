@@ -18,7 +18,8 @@ TARGET_VAR_FILE=$TG_ROOT_DIR/env.tfvars
 clean(){
   rm -rf $TARGET_VAR_FILE
   rm -rf $TERRAGRUNT_FILE
-  rm -rf $RUN_DIR/.terragrunt_cache
+  rm -rf $RUN_DIR/.terragrunt-cache
+  ls $RUN_DIR/.terragrunt-cache
 }
 setup_template(){
   echo "Generating terragrunt template for $MODULE $ENV $REGION"

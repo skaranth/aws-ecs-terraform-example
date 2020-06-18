@@ -1,0 +1,10 @@
+variable "size" {}
+variable "env" {}
+variable "product_code" {}
+variable "product_version" {}
+variable "ecr_repo" {}
+variable "app_port" {}
+variable "service_name" {}
+variable "role_arn" {}
+variable "target_group_arn" {}
+variable "execution_role_arn" {}

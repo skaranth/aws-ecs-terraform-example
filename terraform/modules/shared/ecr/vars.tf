@@ -1,3 +1,5 @@
 variable "env" {}
-variable "service_name" {}
+variable "service_names" {
+  type = list(string)
+}
 

@@ -1,5 +1,6 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 SHELL := /bin/bash
+DEV_ECR := 606688274854.dkr.ecr.us-east-1.amazonaws.com/dev-todo-backend
 
 .PHONY: build
 build:
@@ -38,18 +39,12 @@ start_deps:
 stop:
 	docker-compose down
 
-# .PHONY clean
-# clean:
-# 	docker stop $(docker ps -a -q)
-# 	docker rm $(docker ps -a -q)
-# 	docker rmi $(docker images -q)
-# 	go clean
-#
-# .PHONY start
-# start:
-# 	docker-compose up
-#
-# .PHONY stop
-# stop:
-# 	docker-compose down
-#
+.PHONY: publish
+publish:
+	docker tag todo-backend ${DEV_ECR}
+	docker push ${DEV_ECR}:latest
+
+.PHONY: prmote_test
+promote_test:
+	docker tag todo-backend ${DEV_ECR}
+	docker push ${DEV_ECR}:latest

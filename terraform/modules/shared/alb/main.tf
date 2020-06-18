@@ -7,7 +7,6 @@ data "aws_route53_zone" "target" {
   name = var.domain
 }
 
-
 resource "aws_security_group" "sg-public-alb" {
   name = "${local.name}-sg"
   description = "Public Application ALB SG"
@@ -101,6 +100,6 @@ resource "aws_route53_record" "record" {
   zone_id = data.aws_route53_zone.target.zone_id
   type = "CNAME"
   ttl = "300"
-  records = [
-    "${module.alb.this_lb_dns_name}"]
+  records = [module.alb.this_lb_dns_name]
 }
+

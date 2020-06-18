@@ -23,3 +23,8 @@ output "private_subnets" {
 output "database_subnets" {
   value = module.vpc.database_subnets
 }
+
+output "repo_urls" {
+  value = module.ecr-repos.repo_urls
+}
+

@@ -19,8 +19,9 @@ module "cert" {
   domain = var.domain
 }
 
-module "todo-backend" {
+module "ecr-repos" {
   source = "../shared/ecr"
-  service_name = "todo-backend"
+  service_names = ["todo-backend"]
   env = var.env
 }
+

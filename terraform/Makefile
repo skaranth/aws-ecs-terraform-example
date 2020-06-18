@@ -9,3 +9,6 @@ apply_setup:
 
 apply_infra:
 	$(MAKE) -f $(THIS_FILE) apply env=$(env) module=infra
+
+apply_apps:
+	$(MAKE) -f $(THIS_FILE) apply env=$(env) module=apps
